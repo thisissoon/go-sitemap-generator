@@ -324,7 +324,7 @@ func TestAlternateLinks(t *testing.T) {
 	root := doc.CreateElement("root")
 
 	loc := "/alternates"
-	data := URL{{"loc", loc}, {"xhtml:link", []Attr{
+	data := URL{{"loc", loc}, {"host", "http://example.com"}, {"xhtml:link", []Attr{
 		{
 			"rel":      "alternate",
 			"hreflang": "zh-tw",
@@ -337,9 +337,14 @@ func TestAlternateLinks(t *testing.T) {
 		},
 	}}}
 
+	_, err := NewSitemapURL(&Options{}, data)
+	if err != nil {
+		t.Fatalf("validation error: %v", err)
+	}
+
 	expect := []byte(`
        <root>
-         <loc>/alternates</loc>
+         <loc>http://example.com/alternates</loc>
          <xhtml:link rel="alternate" hreflang="zh-tw" href="/alternates?locale=zh-tw"/>
          <xhtml:link rel="alternate" hreflang="en-us" href="/alternates?locale=en-us"/>
        </root>`)

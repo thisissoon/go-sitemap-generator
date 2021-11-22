@@ -243,6 +243,25 @@ sm.Add(stm.URL{{"loc", "mobiles"}, {"mobile", true}})
 
 Look at [Feature phone sitemaps](https://support.google.com/webmasters/answer/6082207) as required.
 
+### Alternate links
+
+```go
+sm.Add(stm.URL{{"loc", "alternates"}, {"xhtml:link", []Attr{
+  {
+    "rel":      "alternate",
+    "hreflang": "zh-tw",
+    "href":     loc + "?locale=zh-tw",
+  },
+  {
+    "rel":      "alternate",
+    "hreflang": "en-us",
+    "href":     loc + "?locale=en-us",
+  },
+}}}})
+```
+
+Look at [localized versions](https://developers.google.com/search/docs/advanced/crawling/localized-versions) as required.
+
 
 ### Full example
 
