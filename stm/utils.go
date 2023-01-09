@@ -172,10 +172,15 @@ func ToLowerString(befores []string) (afters []string) {
 // URLJoin TODO: Too slowly
 func URLJoin(src string, joins ...string) string {
 	var u *url.URL
-	lastnum := len(joins)
 	base, _ := url.Parse(src)
-
-	for i, j := range joins {
+	var filtered []string
+	for _, j := range joins {
+		if j != "" {
+			filtered = append(filtered, j)
+		}
+	}
+	lastnum := len(filtered)
+	for i, j := range filtered {
 		if !strings.HasSuffix(j, "/") && lastnum > (i+1) {
 			j = j + "/"
 		}
