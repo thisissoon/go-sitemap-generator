@@ -1,4 +1,4 @@
-module github.com/thisissoon/go-sitemap-generator
+module github.com/thisissoon/go-sitemap-generator/v2
 
 go 1.9
 
